@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { Form, Input, Button, Card, Typography, Select, message } from 'antd';
 import { MailOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
 import { register } from '../api/auth';
-import { useNavigate } from 'react-router-dom'; // Added navigate import
+import { useNavigate } from 'react-router-dom';
+import './RegisterPage.css'; // Import the CSS file
 
 const { Title } = Typography;
 const { Option } = Select;
 
 const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate
-
-  // In RegisterPage.jsx, modify the onFinish handler:
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -27,9 +26,9 @@ const RegisterPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '5rem' }}>
-      <Card style={{ width: 500 }}>
-        <Title level={3} style={{ textAlign: 'center' }}>Register</Title>
+    <div className="register-container">
+      <Card className="register-card">
+        <Title level={3} className="register-title">Register</Title>
         <Form
           name="register"
           onFinish={onFinish}
@@ -55,12 +54,12 @@ const RegisterPage = () => {
             name="mobile_number"
             label="Mobile Number"
             rules={[
-                { required: true, message: 'Please input mobile number!' },
-                { pattern: /^[0-9]{10}$/, message: 'Please enter valid 10 digit mobile number!' }
+              { required: true, message: 'Please input mobile number!' },
+              { pattern: /^[0-9]{10}$/, message: 'Please enter valid 10 digit mobile number!' }
             ]}
-            >
+          >
             <Input prefix={<PhoneOutlined />} />
-            </Form.Item>
+          </Form.Item>
 
           <Form.Item
             name="role"
@@ -87,5 +86,3 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
-
-

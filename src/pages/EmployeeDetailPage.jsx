@@ -58,6 +58,44 @@ const EmployeeDetailPage = () => {
           {employee.assistantHrVerified && !employee.managerVerified && <Tag color="orange">Pending Manager</Tag>}
           {employee.managerVerified && !employee.hrVerified && <Tag color="orange">Pending HR</Tag>}
         </Descriptions.Item>
+
+        {/* // Add to the Descriptions component */}
+        <Descriptions.Item label="Passport File">
+        {employee.passportFile ? (
+          <a 
+            href={employee.passportFile.startsWith('http') ? 
+              employee.passportFile : 
+              `http://localhost:3000${employee.passportFile}`
+            } 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            View Document
+          </a>
+        ) : 'N/A'}
+      </Descriptions.Item>
+
+{/* Repeat same pattern for aadharFile and panFile */}
+
+        <Descriptions.Item label="Aadhar Card">
+          {employee.aadharFile ? (
+            <a href={employee.aadharFile.startsWith('http') ? 
+              employee.aadharFile : 
+              `http://localhost:3000${employee.aadharFile}`} target="_blank" rel="noopener noreferrer">
+              View Document
+            </a>
+          ) : 'N/A'}
+        </Descriptions.Item>
+
+        <Descriptions.Item label="PAN Card">
+          {employee.panFile ? (
+            <a href={employee.panFile.startsWith('http') ? 
+              employee.panFile : 
+              `http://localhost:3000${employee.panFile}`} target="_blank" rel="noopener noreferrer">
+              View Document
+            </a>
+          ) : 'N/A'}
+        </Descriptions.Item>
       </Descriptions>
       <Button 
         type="primary" 
@@ -71,3 +109,5 @@ const EmployeeDetailPage = () => {
 };
 
 export default EmployeeDetailPage;
+
+

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, message, Card, Typography, InputNumber } from 'antd';
 import { createEmployee } from '../api/employees';
+import { Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import axios from 'axios';
 
 
 const { Title } = Typography;
@@ -9,34 +12,77 @@ const EmployeeForm = ({ onSuccess }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
+  const [fileList, setFileList] = useState({
+    passportFile: [],
+    aadharFile: [],
+    panFile: []
+  });
+
+  const beforeUpload = (file, field) => {
+    setFileList(prev => ({
+      ...prev,
+      [field]: [file]
+    }));
+    return false; // Prevent automatic upload
+  };
+
+
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      if (typeof values.salary === 'string') {
-        values.salary = parseFloat(values.salary);
+      // Create new FormData for file uploads
+      const uploadFormData = new FormData();
+      
+      // Append files with correct field names
+      if (fileList.passportFile[0]) {
+        uploadFormData.append('passportFile', fileList.passportFile[0]);
+      }
+      if (fileList.aadharFile[0]) {
+        uploadFormData.append('aadharFile', fileList.aadharFile[0]);
+      }
+      if (fileList.panFile[0]) {
+        uploadFormData.append('panFile', fileList.panFile[0]);
       }
       
-      // Ensure alternateEmail is different from primary email
-      if (values.alternateEmail === values.email) {
-        values.alternateEmail = ''; // or show error
+      let fileUrls = {};
+      // Only upload if files were selected
+      if (uploadFormData.entries().next().value) {
+        const uploadResponse = await axios.post(
+          'http://localhost:3000/employees/upload-files',
+          uploadFormData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user'))?.access_token}`
+            }
+          }
+        );
+        fileUrls = uploadResponse.data;
       }
   
-      await createEmployee(values);
+      // Prepare employee data
+      const employeeData = {
+        ...values,
+        ...fileUrls,
+        salary: typeof values.salary === 'string' ? parseFloat(values.salary) : values.salary
+      };
+  
+      if (employeeData.alternateEmail === employeeData.email) {
+        employeeData.alternateEmail = '';
+      }
+  
+      await createEmployee(employeeData);
       message.success('Employee created successfully!');
       form.resetFields();
+      setFileList({ passportFile: [], aadharFile: [], panFile: [] }); // Reset file list
       onSuccess();
     } catch (error) {
-      if (error.response?.data?.message?.includes('already exists')) {
-        message.error('Employee with this email already exists');
-      } else {
-        message.error('Failed to create employee');
-      }
-      console.error('Creation error:', error);
+      console.error('Submission error:', error);
+      message.error(error.response?.data?.message || 'Failed to create employee');
     } finally {
       setLoading(false);
     }
   };
-
   const normFile = (e) => {
     if (Array.isArray(e)) return e;
     return e?.fileList;
@@ -95,6 +141,37 @@ const EmployeeForm = ({ onSuccess }) => {
           <InputNumber style={{ width: '100%' }} />
         </Form.Item>
 
+        {/* // Add to the form items (before the submit button) */}
+        <Form.Item name="passportFile" label="Passport Scan">
+        <Upload
+          beforeUpload={(file) => beforeUpload(file, 'passportFile')}
+          fileList={fileList.passportFile}
+          onRemove={() => setFileList(prev => ({...prev, passportFile: []}))}
+        >
+          <Button icon={<UploadOutlined />}>Upload</Button>
+        </Upload>
+      </Form.Item>
+
+        <Form.Item name="aadharFile" label="Aadhar Card Scan">
+        <Upload
+          beforeUpload={(file) => beforeUpload(file, 'aadharFile')}
+          fileList={fileList.aadharFile}
+          onRemove={() => setFileList(prev => ({...prev, aadharFile: []}))}
+        >
+            <Button icon={<UploadOutlined />}>Upload</Button>
+          </Upload>
+        </Form.Item>
+
+        <Form.Item name="panFile" label="PAN Card Scan">
+        <Upload
+          beforeUpload={(file) => beforeUpload(file, 'panFile')}
+          fileList={fileList.panFile}
+          onRemove={() => setFileList(prev => ({...prev, panFile: []}))}
+        >
+            <Button icon={<UploadOutlined />}>Upload</Button>
+          </Upload>
+        </Form.Item>
+
         
 
         <Form.Item>
@@ -113,3 +190,5 @@ const EmployeeForm = ({ onSuccess }) => {
 };
 
 export default EmployeeForm;
+
+

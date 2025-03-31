@@ -4,6 +4,7 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import { login } from '../api/auth';
 import { useNavigate } from 'react-router-dom';
+import './LoginPage.css';
 
 const { Title } = Typography;
 
@@ -12,49 +13,40 @@ const LoginPage = () => {
   const { login: authLogin } = useAuth();
   const navigate = useNavigate();
 
-  // Modify the onFinish function in LoginPage.jsx:
-// Add this to your LoginPage.jsx's onFinish function:
-const onFinish = async (values) => {
-  setLoading(true);
-  try {
-    const response = await login(values);
-    if (response?.access_token) {
-      const role = authLogin(response);
-      // Redirect based on role
-      switch(role) {
-        case 'ADMIN':
-          navigate('/admin');
-          break;
-        case 'ASSISTANT_HR':
-          navigate('/assistant-hr');
-          break;
-        case 'MANAGER':
-          navigate('/manager');
-          break;
-        case 'HR':
-          navigate('/hr');
-          break;
-        default:
-          navigate('/');
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      const response = await login(values);
+      if (response?.access_token) {
+        const role = authLogin(response);
+        switch(role) {
+          case 'ADMIN':
+            navigate('/admin');
+            break;
+          case 'ASSISTANT_HR':
+            navigate('/assistant-hr');
+            break;
+          case 'MANAGER':
+            navigate('/manager');
+            break;
+          case 'HR':
+            navigate('/hr');
+            break;
+          default:
+            navigate('/');
+        }
       }
+    } catch (error) {
+      console.error('Login failed:', error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error('Login failed:', error);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center',
-      minHeight: '100vh',
-      background: '#f0f2f5'
-    }}>
-      <Card style={{ width: 400, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-        <Title level={3} style={{ textAlign: 'center', marginBottom: 24 }}>
+    <div className="login-container">
+      <Card className="login-card">
+        <Title level={3} className="login-title">
           Employee Management System
         </Title>
         <Form
@@ -100,12 +92,13 @@ const onFinish = async (values) => {
               loading={loading} 
               block
               size="large"
+              className="login-button"
             >
               Log In
             </Button>
           </Form.Item>
         </Form>
-        <div style={{ textAlign: 'center', marginTop: 16 }}>
+        <div className="register-now">
           <Button type="link" onClick={() => navigate('/register')}>
             Don't have an account? Register
           </Button>
@@ -116,6 +109,3 @@ const onFinish = async (values) => {
 };
 
 export default LoginPage;
-
-
-

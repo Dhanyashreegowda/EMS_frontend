@@ -18,7 +18,8 @@ const HRVerifiedEmployees = () => {
     setLoading(true);
     try {
       const data = await getEmployees('hr/verified');
-      setEmployees(data);
+      // Add this filter to ensure only HR verified employees are shown
+      setEmployees(data.filter(emp => emp.hrVerified));
     } catch (error) {
       console.error('Failed to load verified employees:', error);
     } finally {
@@ -126,3 +127,4 @@ const HRVerifiedEmployees = () => {
 };
 
 export default HRVerifiedEmployees;
+

@@ -1,0 +1,35 @@
+.register-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+  }
+  
+  .register-card {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+  
+  .register-title {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 576px) {
+    .register-card {
+      margin: 0 15px;
+    }
+    
+    .register-title {
+      font-size: 1.5rem;
+    }
+  }
