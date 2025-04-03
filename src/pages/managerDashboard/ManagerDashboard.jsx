@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Space, message, Card, Typography, Popconfirm, Tag, Tooltip } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { getEmployees, verifyEmployee, deleteEmployee ,getEmployeesForManager} from '../api/employees';
+import { getEmployees, verifyEmployee, deleteEmployee ,getEmployeesForManager} from '../../api/employees';
 import { CheckOutlined, DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
+import './ManagerDashboard.css'
 
 const { Title } = Typography;
 

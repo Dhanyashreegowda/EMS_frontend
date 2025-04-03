@@ -1,0 +1,70 @@
+/* Container for table */
+.table-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Ant Design Table Styling */
+.ant-table {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Mobile-Responsive Table Design */
+@media (max-width: 768px) {
+  .ant-table-thead {
+    display: none; /* Hide table header */
+  }
+
+  .ant-table-tbody tr {
+    display: block;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+  }
+
+  .ant-table-tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .ant-table-tbody td:last-child {
+    border-bottom: none;
+  }
+
+  /* Add labels to each cell using data-label */
+  .ant-table-tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #555;
+  }
+
+  /* Button Adjustments */
+  .ant-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  /* Status Tags Styling */
+  .ant-tag {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+}
+
+/* Button Styling for all Screens */
+.ant-btn-primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.ant-btn-primary:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}

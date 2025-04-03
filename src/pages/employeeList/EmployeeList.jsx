@@ -1,8 +1,9 @@
-import React, { useState, useEffect , useCallback} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Table, Button, Tag, Space, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { getEmployees, verifyEmployee } from '../api/employees';
+import { useAuth } from '../../context/AuthContext';
+import { getEmployees, verifyEmployee } from '../../api/employees';
+import './EmployeeList.css'; // Import CSS
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
@@ -13,14 +14,12 @@ const EmployeeList = () => {
   const loadEmployees = useCallback(async () => {
     setLoading(true);
     try {
-      let verifiedStatus;
-      if (user.user.role === 'ASSISTANT_HR') {
-        verifiedStatus = 'ASSISTANT_HR';
-      } else if (user.user.role === 'MANAGER') {
-        verifiedStatus = 'MANAGER';
-      } else if (user.user.role === 'HR') {
-        verifiedStatus = 'HR';
-      }
+      const verifiedStatus = {
+        'ASSISTANT_HR': 'ASSISTANT_HR',
+        'MANAGER': 'MANAGER',
+        'HR': 'HR'
+      }[user.user.role];
+
       const data = await getEmployees(verifiedStatus);
       setEmployees(data);
     } catch (error) {
@@ -29,7 +28,7 @@ const EmployeeList = () => {
       setLoading(false);
     }
   }, [user.user.role]);
-  
+
   useEffect(() => {
     loadEmployees();
   }, [loadEmployees]);
@@ -76,8 +75,8 @@ const EmployeeList = () => {
         <Space size="middle">
           <Button onClick={() => navigate(`/employee/${record.id}`)}>View</Button>
           {((user.user.role === 'ASSISTANT_HR' && !record.assistantHrVerified) ||
-           (user.user.role === 'MANAGER' && !record.managerVerified) ||
-           (user.user.role === 'HR' && !record.hrVerified)) && (
+            (user.user.role === 'MANAGER' && !record.managerVerified) ||
+            (user.user.role === 'HR' && !record.hrVerified)) && (
             <Button type="primary" onClick={() => handleVerify(record.id)}>
               Verify
             </Button>
@@ -88,15 +87,16 @@ const EmployeeList = () => {
   ];
 
   return (
-    <Table
-      columns={columns}
-      dataSource={employees}
-      loading={loading}
-      rowKey="id"
-    />
+    <div className="table-container">
+      <Table
+        columns={columns}
+        dataSource={employees}
+        loading={loading}
+        rowKey="id"
+        pagination={{ pageSize: 5 }}
+      />
+    </div>
   );
 };
 
 export default EmployeeList;
-
-

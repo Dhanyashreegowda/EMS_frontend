@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, message, Card, Typography, InputNumber } from 'antd';
-import { createEmployee } from '../api/employees';
+import { createEmployee } from '../../api/employees';
 import { Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import './EmployeeForm.css';
 
 
 const { Title } = Typography;
@@ -190,5 +191,4 @@ const EmployeeForm = ({ onSuccess }) => {
 };
 
 export default EmployeeForm;
-
 

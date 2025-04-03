@@ -1,0 +1,154 @@
+/* Main card container */
+.manager-dashboard-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 24px;
+  padding: 24px;
+  background: #fff;
+}
+
+/* Title styling */
+.dashboard-title {
+  margin-bottom: 24px !important;
+  color: #262626;
+}
+
+/* Table responsive styles */
+.dashboard-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dashboard-table .ant-table-thead > tr > th {
+  white-space: nowrap;
+  background: #fafafa !important;
+  font-weight: 600;
+  padding: 16px !important;
+}
+
+.dashboard-table .ant-table-tbody > tr > td {
+  padding: 12px 16px !important;
+  vertical-align: middle;
+}
+
+/* Status tags */
+.status-tag {
+  margin-right: 0;
+  font-size: 12px;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.action-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Button icons */
+.action-button .anticon {
+  font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .manager-dashboard-card {
+    margin: 16px;
+    padding: 16px !important;
+  }
+  
+  .dashboard-title {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .manager-dashboard-card {
+    margin: 12px;
+    padding: 12px !important;
+  }
+  
+  /* Hide employee ID on smaller screens */
+  .dashboard-table .ant-table-thead > tr > th:nth-child(1),
+  .dashboard-table .ant-table-tbody > tr > td:nth-child(1) {
+    display: none;
+  }
+  
+  .status-tag {
+    font-size: 11px;
+    padding: 0 6px;
+    margin-bottom: 4px;
+  }
+  
+  .action-buttons {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .manager-dashboard-card {
+    margin: 8px;
+    padding: 8px !important;
+  }
+  
+  .dashboard-title {
+    font-size: 18px !important;
+    margin-bottom: 16px !important;
+  }
+  
+  .dashboard-table .ant-table-thead > tr > th,
+  .dashboard-table .ant-table-tbody > tr > td {
+    padding: 10px 8px !important;
+    font-size: 13px;
+  }
+  
+  .action-button {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .action-button .anticon {
+    font-size: 14px;
+  }
+}
+
+/* Tag colors */
+.tag-verified {
+  background: #f6ffed;
+  border-color: #b7eb8f;
+  color: #389e0d;
+}
+
+.tag-pending {
+  background: #fff1f0;
+  border-color: #ffa39e;
+  color: #cf1322;
+}
+
+.tag-manager-verified {
+  background: #e6f7ff;
+  border-color: #91d5ff;
+  color: #096dd9;
+}
+
+.tag-manager-pending {
+  background: #fff7e6;
+  border-color: #ffd591;
+  color: #d46b08;
+}
+
+/* Empty state styling */
+.empty-state {
+  margin: 20px 0;
+  padding: 24px;
+}

@@ -1,0 +1,86 @@
+/* Assistant HR Dashboard CSS */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .card-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #2c3e50;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .ant-table {
+    border-radius: 8px;
+  }
+  
+  .ant-btn {
+    border-radius: 8px;
+  }
+  
+  .ant-tag {
+    font-weight: 600;
+  }
+  
+  /* Customize Action Buttons */
+  .ant-btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .ant-btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .ant-btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  .ant-btn-danger:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .card-container {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    .ant-btn {
+      font-size: 12px;
+    }
+  
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 20px;
+    }
+  
+    .ant-btn {
+      padding: 4px;
+    }
+  }
+  

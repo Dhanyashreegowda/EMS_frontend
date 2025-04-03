@@ -1,0 +1,112 @@
+/* Base Header Styles */
+.app-header {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    padding: 0 24px;
+    background: #001529 !important;
+    height: 64px;
+    line-height: 64px;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    color: white !important;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  
+  /* Desktop Menu Styles */
+  .desktop-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .user-avatar {
+    background-color: #1890ff;
+    margin-right: 8px;
+  }
+  
+  .user-info {
+    margin-left: 8px;
+  }
+  
+  .auth-buttons {
+    display: flex;
+  }
+  
+  .auth-button {
+    color: white !important;
+  }
+  
+  /* Mobile Menu Styles */
+  .mobile-menu {
+    display: none;
+  }
+  
+  .mobile-menu-button {
+    color: white !important;
+    font-size: 16px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .logo {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .app-header {
+      padding: 0 16px;
+    }
+    
+    .desktop-menu {
+      display: none;
+    }
+    
+    .mobile-menu {
+      display: block;
+    }
+    
+    .logo {
+      font-size: 16px;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .app-header {
+      height: 56px;
+      line-height: 56px;
+    }
+    
+    .logo {
+      font-size: 14px;
+      max-width: 150px;
+    }
+  }

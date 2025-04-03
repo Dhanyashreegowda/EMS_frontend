@@ -1,7 +1,8 @@
 import { Layout, Menu, Dropdown, Avatar, Button } from 'antd';
-import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { UserOutlined, LogoutOutlined, MenuOutlined } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import './AppHeader.css'; // We'll create this CSS file
 
 const { Header } = Layout;
 
@@ -17,45 +18,83 @@ const AppHeader = () => {
     </Menu>
   );
 
+  const mobileMenu = (
+    <Menu>
+      {user ? (
+        <>
+          <Menu.Item key="profile" icon={<UserOutlined />}>
+            {user.user.email} ({user.user.role})
+          </Menu.Item>
+          <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={logout}>
+            Logout
+          </Menu.Item>
+        </>
+      ) : (
+        <>
+          <Menu.Item key="login" onClick={() => navigate('/login')}>
+            Login
+          </Menu.Item>
+          <Menu.Item key="register" onClick={() => navigate('/register')}>
+            Register
+          </Menu.Item>
+        </>
+      )}
+    </Menu>
+  );
+
   return (
-    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ color: 'white', fontWeight: 'bold' }}>
-          <Link to="/" style={{ color: 'white', fontSize: '18px' }}>
+    <Header className="app-header">
+      <div className="header-content">
+        <div className="logo-container">
+          <Link to="/" className="logo">
             Employee Management System
           </Link>
         </div>
         
-        {user ? (
-          <Dropdown overlay={menu} placement="bottomRight">
-            <div style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-              <Avatar 
-                style={{ backgroundColor: '#1890ff' }} 
-                icon={<UserOutlined />} 
-              />
-              <span style={{ color: 'white', marginLeft: 8 }}>
-                {user.user.email} ({user.user.role})
-              </span>
+        {/* Desktop View */}
+        <div className="desktop-menu">
+          {user ? (
+            <Dropdown overlay={menu} placement="bottomRight">
+              <div className="user-profile">
+                <Avatar 
+                  className="user-avatar"
+                  icon={<UserOutlined />} 
+                />
+                <span className="user-info">
+                  {user.user.email} ({user.user.role})
+                </span>
+              </div>
+            </Dropdown>
+          ) : (
+            <div className="auth-buttons">
+              <Button 
+                type="text" 
+                className="auth-button"
+                onClick={() => navigate('/login')}
+              >
+                Login
+              </Button>
+              <Button 
+                type="text" 
+                className="auth-button"
+                onClick={() => navigate('/register')}
+              >
+                Register
+              </Button>
             </div>
+          )}
+        </div>
+
+        {/* Mobile View */}
+        <div className="mobile-menu">
+          <Dropdown overlay={mobileMenu} trigger={['click']}>
+            <Button 
+              type="text" 
+              icon={<MenuOutlined />} 
+              className="mobile-menu-button"
+            />
           </Dropdown>
-        ) : (
-          <div>
-            <Button 
-              type="text" 
-              style={{ color: 'white' }}
-              onClick={() => navigate('/login')}
-            >
-              Login
-            </Button>
-            <Button 
-              type="text" 
-              style={{ color: 'white' }}
-              onClick={() => navigate('/register')}
-            >
-              Register
-            </Button>
-          </div>
-        )}
+        </div>
       </div>
     </Header>
   );

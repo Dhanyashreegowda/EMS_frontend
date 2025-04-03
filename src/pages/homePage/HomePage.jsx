@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Typography, Row, Col } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import './HomePage.css'; // We'll create this CSS file
 
 const { Title, Text } = Typography;

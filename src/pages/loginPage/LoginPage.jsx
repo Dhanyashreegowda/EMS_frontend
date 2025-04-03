@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Card, Typography } from 'antd';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
-import { useAuth } from '../context/AuthContext';
-import { login } from '../api/auth';
+import { useAuth } from '../../context/AuthContext';
+import { login } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 

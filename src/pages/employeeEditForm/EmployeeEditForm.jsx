@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Card, Typography, InputNumber, message, Upload, Space } from 'antd';
 import { UploadOutlined, EyeOutlined } from '@ant-design/icons';
-import { getEmployee, updateEmployee } from '../api/employees';
+import { getEmployee, updateEmployee } from '../../api/employees';
 import axios from 'axios';
 
 const { Title } = Typography;
@@ -242,6 +242,7 @@ const EmployeeEditForm = () => {
           </Upload>
           {renderFileViewer(fileList.panFile[0])}
         </Form.Item>
+
 
 
         <Form.Item>

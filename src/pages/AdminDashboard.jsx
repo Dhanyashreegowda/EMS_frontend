@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tabs ,message} from 'antd';
-import EmployeeForm from './EmployeeForm';
-import EmployeeList from './EmployeeList';
+import EmployeeForm from './employeeForm/EmployeeForm';
+import EmployeeList from './employeeList/EmployeeList';
 
 const { TabPane } = Tabs;
 
@@ -30,3 +30,4 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+

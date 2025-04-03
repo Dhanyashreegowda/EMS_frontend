@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Tag, Space, message, Card, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { getEmployees, verifyEmployee } from '../api/employees';
+import { getEmployees, verifyEmployee } from '../../api/employees';
+import './AssistantHRDashboard.css';
+
 
 const { Title } = Typography;
 

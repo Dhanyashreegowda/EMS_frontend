@@ -1,0 +1,99 @@
+/* Main card container */
+.ant-card {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+/* Form title */
+.ant-typography {
+  text-align: center;
+  margin-bottom: 24px !important;
+  color: #262626;
+}
+
+/* Form items */
+.ant-form-item {
+  margin-bottom: 16px;
+}
+
+/* Input fields */
+.ant-input,
+.ant-input-number {
+  width: 100%;
+}
+
+/* Upload section */
+.ant-upload {
+  width: 100%;
+}
+
+.ant-upload-list {
+  margin-top: 8px;
+}
+
+/* Submit button */
+.ant-btn-primary {
+  height: 40px;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .ant-card {
+    padding: 20px;
+  }
+  
+  .ant-typography {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ant-card {
+    padding: 16px;
+    margin: 0 16px;
+    width: auto;
+  }
+  
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .ant-card {
+    padding: 12px;
+    margin: 0 8px;
+  }
+  
+  .ant-typography {
+    font-size: 18px !important;
+    margin-bottom: 16px !important;
+  }
+  
+  .ant-btn {
+    padding: 0 12px;
+  }
+}
+
+/* Focus states */
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-number:focus,
+.ant-input-number-focused {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* Upload button styling */
+.ant-upload.ant-upload-select {
+  display: block;
+}
+
+/* Error message styling */
+.ant-form-item-explain-error {
+  font-size: 12px;
+}

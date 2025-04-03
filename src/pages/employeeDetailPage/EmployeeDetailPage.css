@@ -1,0 +1,135 @@
+/* Base Container Styles */
+.employee-detail-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  /* Card Styling */
+  .employee-detail-card {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    margin: 20px 0;
+  }
+  
+  /* Title Styles */
+  .employee-detail-title {
+    color: #1890ff;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  
+  /* Descriptions Layout */
+  .employee-detail-descriptions {
+    width: 100%;
+  }
+  
+  .employee-detail-descriptions .ant-descriptions-view {
+    border-radius: 8px;
+  }
+  
+  .employee-detail-descriptions .ant-descriptions-item-label {
+    font-weight: 600;
+    color: #555;
+    background-color: #fafafa;
+    width: 200px;
+  }
+  
+  .employee-detail-descriptions .ant-descriptions-item-content {
+    color: #333;
+    padding: 12px 16px;
+  }
+  
+  /* Status Tags */
+  .employee-detail-tag {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  
+  /* Document Links */
+  .employee-detail-link {
+    color: #1890ff;
+    transition: color 0.3s;
+  }
+  
+  .employee-detail-link:hover {
+    color: #40a9ff;
+    text-decoration: underline;
+  }
+  
+  /* Back Button */
+  .employee-detail-back-button {
+    margin-top: 24px;
+    height: 40px;
+    font-size: 14px;
+    background-color: #1890ff;
+    border-color: #1890ff;
+    transition: all 0.3s;
+  }
+  
+  .employee-detail-back-button:hover {
+    background-color: #40a9ff;
+    border-color: #40a9ff;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .employee-detail-container {
+      padding: 10px;
+    }
+  
+    .employee-detail-card {
+      padding: 16px;
+      margin: 10px 0;
+    }
+  
+    .employee-detail-title {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+  
+    .employee-detail-descriptions .ant-descriptions-item-label {
+      width: auto;
+      padding: 8px 12px;
+      display: block;
+    }
+  
+    .employee-detail-descriptions .ant-descriptions-item-content {
+      padding: 8px 12px;
+    }
+  
+    .employee-detail-back-button {
+      margin-top: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .employee-detail-card {
+      padding: 12px;
+    }
+  
+    .employee-detail-title {
+      font-size: 18px;
+    }
+  
+    .employee-detail-descriptions .ant-descriptions-item-label,
+    .employee-detail-descriptions .ant-descriptions-item-content {
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+  
+    .employee-detail-tag {
+      font-size: 11px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+  }

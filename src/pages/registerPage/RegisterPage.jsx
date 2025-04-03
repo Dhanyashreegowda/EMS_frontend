@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Card, Typography, Select, message } from 'antd';
 import { MailOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
-import { register } from '../api/auth';
+import { register } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
 import './RegisterPage.css'; // Import the CSS file
 
@@ -86,3 +86,5 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
+
